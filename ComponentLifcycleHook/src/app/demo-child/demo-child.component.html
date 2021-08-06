@@ -1,0 +1,18 @@
+<p>demo-child works!</p>
+Counter Value :{{counter}}
+<table border="2">
+    <thead>
+        <tr>
+            <th>Employee Id</th>
+            <th>Name</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let emp of employee">
+            <td>{{emp.id}}</td>
+            <td>{{emp.name}}</td>
+            <td>{{emp.location}}</td>
+        </tr>
+    </tbody>
+</table>

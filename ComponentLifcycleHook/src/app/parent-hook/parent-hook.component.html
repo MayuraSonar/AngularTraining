@@ -1,0 +1,14 @@
+<p>parent-hook works!</p>
+
+<div>
+    <div>
+        <button type="button" (click)="increment()">Add</button> <hr/>
+        <app-child-hook *ngIf="ShowChild" [newValue]="counter" [emp]="employee"></app-child-hook> <hr/>
+        <button type="button" (click)="decrement()">Subtract</button><hr/>
+        <button type="button" (click)="UpdateDetails()">Update Name</button>
+        <button type="button" (click)="Hidshow()"> Hide/Show</button>
+    </div>
+</div>
+<h3>Parent Component</h3>
+Name:{{employee.name}}
+Location:{{employee.location}}

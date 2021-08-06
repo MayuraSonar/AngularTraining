@@ -1,0 +1,156 @@
+<div class="container p-3">
+  <div class="row">
+    <div class="col-12">
+        <form [formGroup]="form" (submit)="submit()">
+          <div class="card">
+            <div class="card-header">Employee Details</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="form-group col-6">
+                  <label>Name</label>
+                  <input
+                    class="form-control"
+                    formControlName="name"
+                    type="text"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      form.controls['name'].touched &&
+                      form.controls['name'].hasError('required')
+                    "
+                  >
+                    Name is required!
+                  </span>
+
+                  <div class="form-group col-6">
+                    <label>Organization</label>
+                    <input
+                      class="form-control"
+                      formControlName="organization"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="card-header">Contact Information</div>
+              <div class="card-body" formArrayName="contacts">
+                <div class="row">
+                  <div
+                    class="col-6"
+                    *ngFor="let contact of contactFormGroup.controls; let i = index"
+                  >
+                    <div [formGroupName]="i" class="row">
+                      <div class="form-group col-6">
+                        <label>Type of Contact</label>
+                        <select
+                          (change)="ChangedFieldType(i)"
+                          class="form-control"
+                          formControlName="type"
+                          type="text"
+                        >
+                          <option value="email">Email</option>
+                          <option value="phone">Phone</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group col-6">
+                        <label>Contact Label</label>
+                        <input
+                          class="form-control"
+                          formControlName="name"
+                          type="text"
+                        />
+                        <span
+                          class="text-danger"
+                          *ngIf="
+                          getContactFormGroup(i).controls['name'].touched &&
+                          getContactFormGroup(i).controls['name'].hasError(
+                              'required'
+                            )
+                          "
+                        >
+                          Label is required!
+                        </span>
+                      </div> 
+                      <div class="form-group col-12">
+                        <label>Email/Phone No.</label>
+                        <input
+                          class="form-control"
+                          formControlName="value"
+                          type="text"
+                        />
+                        <span
+                          class="text-danger"
+                          *ngIf="
+                          getContactFormGroup(i).controls['value'].touched &&
+                          getContactFormGroup(i).controls['value'].hasError(
+                              'required'
+                            )
+                          "
+                        >
+                          Email/Phone no is required!
+                        </span>
+                        <span
+                        class="text-danger"
+                        *ngIf="
+                        getContactFormGroup(i).controls['value'].touched &&
+                        getContactFormGroup(i).controls['value'].hasError(
+                            'email'
+                          )
+                        "
+                      >
+                        Email is not valid!
+                      </span>
+                      <span
+                      class="text-danger"
+                      *ngIf="
+                      getContactFormGroup(i).controls['value'].touched &&
+                      getContactFormGroup(i).controls['value'].hasError('maxLength'
+                        
+                        )
+                      "
+                    >
+                      Phone no. is not valid!
+                    </span>
+                  </div>
+                  <div class="form-group col-12 text-right">
+                    <button
+                      class="btn btn-danger"
+                      type="button"
+                      (click)="removeContact(i)"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="col-12">
+              <button
+                class="btn btn-primary"
+                type="button"
+                (click)="addContact()"
+              >
+              
+                Add Contact
+              </button>
+              <button
+                class="btn btn-dark"
+                [disabled]="!form.valid"
+                type="submit"
+              >
+
+              Save Employee Data
+                
+            </button>
+        </div>
+      </div>
+    </div>
+          </div>
+  </form>
+  </div>
+  </div>
+  </div>
